@@ -4,21 +4,26 @@ import {authorize, searchRelated, generateSongList} from '../scripts/spotifySear
 import Artist from './Artist'
 import Playlist from './Playlist'
 
+
+// subcomponent of ArtistExplorer
+// executes and displays the artist search process and results
 const Traverser = ({startName, endName}) => {
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState(null); //app access token
     const [start, setStart] = useState(null); //start artist object
     const [end, setEnd] = useState(null); //end artist object
     const [middle, setMiddle] = useState([]); //array of artist objects between start and end in order
     const [current, setCurrent] = useState(null); //current artist being explored. null if done or not begun
-    const currentRef = useRef(current);
-    const [songList, setSongList] = useState([]); 
-    const [message, setMessage] = useState('');
+    const currentRef = useRef(current); //used for referencing current in message hook
+    const [songList, setSongList] = useState([]); // list of songs for results playlist
+    const [message, setMessage] = useState(''); // messages displayed during search
     const api = new SpotifyWebApi();
 
+    // On load, generate a new token
     useEffect(() => {
         authorize().then((data) => setToken(data));
     }, [])
 
+    // When the token is loaded, find the closest artist to the provided name
     useEffect(() => {
         if (token) {
             api.setAccessToken(token.access_token);
@@ -31,6 +36,7 @@ const Traverser = ({startName, endName}) => {
         }
     }, [token])
 
+    // When start and end artists are found, set periodic messages and begin the search
     useEffect(() => {
         if (start && end) {
             setTimeout(() => {if (currentRef) {setMessage(`Searching for ${end.name} starting with ${start.name}'s related artists`)}}, 3000);
@@ -40,6 +46,7 @@ const Traverser = ({startName, endName}) => {
         }
     }, [start, end])
 
+    // When the search completes, generate the song list
     useEffect(() => {
         if (middle.length > 0) {
             runSongListGeneration();
@@ -47,30 +54,30 @@ const Traverser = ({startName, endName}) => {
         }
     }, [middle])
 
-
+    // Generate a list of songs based on an artist list
     const runSongListGeneration = async () => {
         setSongList(await generateSongList(middle, api));
     }
 
+    // Execute the related artist BFS search 
     const runSearch = async () => {
         setMiddle(await searchRelated(start, end, api, setCurrent));
         setMessage('');
     }
 
-
     return (
         <div className="traverser">
             <div className="search">
-                { start && end ?
+                { start && end ? //display start and end artist info once loaded
                     <div className="results">
                         <Artist artistInfo={start}/>
                         <hr></hr>
                         <div className="middle-wrapper">
-                            {current ?
+                            {current ? //show exploration status while searching
                                 <div id="current">
                                     <h4>Currently Exploring:</h4>
                                     <h4>{current.artist.name}</h4>
-                                    { message === '' ?
+                                    { message === '' ? //display periodic messages
                                         null :
                                         <p id="message">{message}</p>
                                     }
@@ -83,7 +90,7 @@ const Traverser = ({startName, endName}) => {
                     <p>Loading...</p>
                 }
             </div>
-            {songList.length > 0 ? 
+            {songList.length > 0 ? // Display button for adding playlist once ready
                 <Playlist songList={songList} /> :
                 null
             }

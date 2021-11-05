@@ -13,7 +13,7 @@ body {
     justify-content: center;
 }
 
-main {
+.artist-explorer main {
     margin-bottom: 30px;
     flex-grow: 1;
     display: flex;
@@ -21,7 +21,7 @@ main {
     justify-content: center;
 }
 
-.nav {
+.artist-explorer .nav {
     width: 100%;
     padding-bottom: 30px;
     color: white;
@@ -31,19 +31,19 @@ main {
     background-image: linear-gradient(to bottom, RGB(27, 203, 87), RGB(27, 203, 87), white);
 }
 
-.nav h1 {
+.artist-explorer .nav h1 {
     padding-left: 20px;
 }
 
-.nav .nav-links {
+.artist-explorer .nav .nav-links {
     padding-right: 20px;
 }
 
-.nav .nav-links h2 {
+.artist-explorer .nav .nav-links h2 {
     margin: 10px 0px;
 }
 
-.input {
+.artist-explorer .input {
     width: 80%;
     margin: 0;
     display: flex;
@@ -52,18 +52,18 @@ main {
     justify-content: center;
 }
 
-.input p {
+.artist-explorer .input p {
     width: 100%;
     text-align: center;
 }
 
-.input input {
+.artist-explorer .input input {
     height: 30px;
     min-width: 200px;
     margin: 5px 10px;
 }
 
-.input button {
+.artist-explorer .input button {
     width: 120px;
     height: 35px;
     margin: 5px 30%;
@@ -75,7 +75,7 @@ main {
     border: none;
 }
 
-.about {
+.artist-explorer .about {
     font-family: Helvetica;
     max-width: 750px;
     margin: 0 30px;
@@ -87,19 +87,19 @@ main {
     justify-content: center;
 }
 
-.about p {
+.artist-explorer .about p {
     margin: 10px;
 }
 
-.about li p {
+.artist-explorer .about li p {
     margin: 2px 0 4px 8px;
 }
 
-main {
+.artist-explorer main {
     margin-bottom: 60px;
 }
 
-.results {
+.artist-explorer .results {
     font-family: Raleway, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -107,41 +107,41 @@ main {
     align-items: center;
 }
 
-.results .middle-wrapper {
+.artist-explorer .results .middle-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.middle-wrapper #current {
+.artist-explorer .middle-wrapper #current {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#current h4 {
+.artist-explorer #current h4 {
     margin: 10px;
 }
 
-#message {
+.artist-explorer #message {
     font-style: italic;
     max-width: 300px;
     text-align: center;
 }
 
-.playlist-added {
+.artist-explorer .playlist-added {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-hr {
+.artist-explorer hr {
     width: 300px;
 }
 
-#Artist {
+.artist-explorer #Artist {
     width: 200px;
     display: flex;
     flex-direction: column;
@@ -149,16 +149,16 @@ hr {
     align-items: center;
 }
 
-#Artist img {
+.artist-explorer #Artist img {
     width: 100%;
     margin-bottom: 15px;
 }
 
-#Artist h2 {
+.artist-explorer #Artist h2 {
     margin: 10px 0px 5px 0px;
 }
 
-.playlist {
+.artist-explorer .playlist {
     width: 100%;
     height: 50px;
     position: fixed;
@@ -169,7 +169,7 @@ hr {
     align-items: center;
 }
 
-div .playlist-button {
+.artist-explorer div .playlist-button {
     width: 250px;
     height: 35px;
     margin-bottom: 80px;
@@ -183,7 +183,7 @@ div .playlist-button {
     font-size: 20px;
 }
 
-.playlist a {
+.artist-explorer .playlist a {
     font-family: Raleway, helvetica;
     font-weight: bold;
     text-decoration: none;
@@ -191,14 +191,14 @@ div .playlist-button {
     font-size: 26px;
 }
 
-footer {
+.artist-explorer footer {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
     opacity: 75%;
     margin: 0 auto;
 }
 
-footer a {
+.artist-explorer footer a {
     font-weight: bold;
     color: black;
     text-decoration: none;

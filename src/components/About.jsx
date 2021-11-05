@@ -1,5 +1,6 @@
 import React from 'react'
 
+//subcomponent containing About page for this app
 const About = () => {
     return (
         <div className="about">

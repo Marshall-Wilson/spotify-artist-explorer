@@ -1,5 +1,6 @@
 import React from 'react'
 
+//explorer nav bar
 const Nav = ({clickHandler}) => {
     return (
         <div className="nav">

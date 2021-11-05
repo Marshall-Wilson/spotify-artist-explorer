@@ -1,6 +1,8 @@
 import BfsArtist from './BfsArtist'
 import SpotifyWebApi from 'spotify-web-api-js'
 
+
+//returns an app authorization token 
 export const authorize = () => {
     return new Promise((resolve, reject) => {
         const data = { grant_type: 'client_credentials' };
@@ -21,6 +23,9 @@ export const authorize = () => {
     })
 }
 
+
+//performs a BFS to find a path from the 'start' artist to the 'end' artist
+//using related artists as neighbors. Returns an array of artists from start to end.
 export const searchRelated = async(start, end, api, setCurrent) => {
     let tbd = [new BfsArtist(start, null, null)];
     let visited = [];
@@ -47,6 +52,8 @@ export const searchRelated = async(start, end, api, setCurrent) => {
     return path.reverse();
 }
 
+
+//return the related artists of an artist(both in BfsArtist format) when resolved
 const getAllRelateds = (artist, api) => {
     return new Promise((resolve, reject) => {
         api.getArtistRelatedArtists(artist.id)
@@ -59,6 +66,8 @@ const getAllRelateds = (artist, api) => {
 }
 
 
+//perform BFS of artists who collaborated on songs
+//deprecated/replaced with searchRelateds
 export const searchCollabs = async(start, end, api) => {
     let tbd = [new BfsArtist(start, null, null)];
     let visited = [];
@@ -80,8 +89,8 @@ export const searchCollabs = async(start, end, api) => {
 }
 
 
-
 // given an artist and authorized api, returns a set of artists who have collaborated on songs with the original artist
+// deprecated/replaced with getAllRelateds
 const getAllCollaborators = (artist, api) => {
     return new Promise((resolve, reject) => {
         let collaborators = [];
@@ -107,6 +116,8 @@ const getAllCollaborators = (artist, api) => {
     })
 }
 
+
+//given an artist and album, returns a list of unique artists who also wrote songs on the album
 const getAlbumCollaborators = (artist, album, api) => {
     return new Promise((resolve, reject) => {
         let collaborators = [];
@@ -128,6 +139,8 @@ const getAlbumCollaborators = (artist, album, api) => {
 }
 
 
+//given a list of artists in BfsArtist format and an authorized api
+//returns an array of spotify song objects (one per artist in the same order)
 export const generateSongList = (artistList, api) => {
     return new Promise(async(resolve, reject) => {
         const songList = []
@@ -142,12 +155,13 @@ export const generateSongList = (artistList, api) => {
     })
 }
 
-
+//finds whether a given id is in a list of BfsArtist objects
 const isIn = (id, list) => {
     return (list.findIndex((elmt) => elmt.id === id) !== -1);
 }
 
-
+//given a Spotify user access token, creates a playlist for the 
+//user from a list of song id's
 export const generatePlaylist = async(token, songList) => {
     const api = new SpotifyWebApi();
     api.setAccessToken(token);

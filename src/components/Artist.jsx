@@ -1,5 +1,6 @@
 import React from 'react'
 
+//subcomponent for displaying artist image and name
 const Artist = ({artistInfo}) => {
     return (
         <div id='Artist'>

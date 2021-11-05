@@ -6,7 +6,7 @@ import { generatePlaylist } from './scripts/spotifySearch'
 import Traverser from './components/Traverser';
 import Input from './components/Input';
 
-
+// Retrieves access token and playlist info from Spotify callback
 const hash = window.location.hash
     .substring(1)
     .split("&")
@@ -19,14 +19,16 @@ const hash = window.location.hash
     }, {});
 window.location.hash = "";
 
+// Main component for the spotify artist explorer 
 function ArtistExplorer() {
-    const [token, setToken] = useState(null);
-    const [pageChoice, setPageChoice] = useState('main');
-    const [startName, setStartName] = useState('');
-    const [endName, setEndName] = useState('');
-    const [searching, setSearching] = useState(false);
-    const [playlistID, setPlaylistID] = useState(null);
+    const [token, setToken] = useState(null); //Spotify access token
+    const [pageChoice, setPageChoice] = useState('main'); //display main or about page
+    const [startName, setStartName] = useState(''); //starting artist
+    const [endName, setEndName] = useState(''); //ending artist
+    const [searching, setSearching] = useState(false); //whether search is currently happening
+    const [playlistID, setPlaylistID] = useState(null); //stores playlist id once generated
 
+    // Sets the current page choice. 'main' or invalid choices refresh page to base state
     const newPageChoice = (name) => {
         if (name === 'about') {
             setPageChoice('about');
@@ -35,6 +37,7 @@ function ArtistExplorer() {
         }
     }
 
+    // On load check hash for access token
     useEffect(() => {
         if (hash.access_token && hash.state) {
             setToken(hash.access_token);
@@ -42,6 +45,7 @@ function ArtistExplorer() {
         }
     }, [])
 
+    // If access token and playlist info are available, generate playlist for user
     useEffect(() => {
         if (token && hash.state) {
             let songList = hash.state.split('-').filter(elmt => elmt !== "");
@@ -50,16 +54,17 @@ function ArtistExplorer() {
         }
     }, [token])
 
+    // Click handler for initial input
     const beginSearch = () => {
         setSearching(true);
     }
 
     return ( 
-        <div className = "App" >
+        <div className = "artist-explorer" >
             <Nav clickHandler = { newPageChoice }/> 
-            {pageChoice === 'main' ?
+            {pageChoice === 'main' ? // display main or about 
                 <main> 
-                    {token ?
+                    {token ? // if user token is available, display post-playlist info
                         <div className='playlist-added'>
                             <h1> Playlist Added </h1> 
                             <a className='playlist-button' href={`https://open.spotify.com/playlist/${playlistID}`} target='_blank' rel="noopener noreferrer">
