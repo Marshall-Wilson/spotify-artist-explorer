@@ -2,11 +2,15 @@ body {
     min-height: 100vh;
 }
 
-#root,
-.App {
+#explorer-root {
     min-height: 100vh;
     width: 100%;
     font-family: Raleway, Arial, Helvetica, sans-serif;
+}
+
+.artist-explorer {
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,6 +41,7 @@ body {
 
 .artist-explorer .nav .nav-links {
     padding-right: 20px;
+    cursor: pointer;
 }
 
 .artist-explorer .nav .nav-links h2 {
@@ -73,6 +78,7 @@ body {
     color: white;
     background: RGB(27, 203, 87);
     border: none;
+    cursor: pointer;
 }
 
 .artist-explorer .about {
@@ -126,7 +132,7 @@ body {
 
 .artist-explorer #message {
     font-style: italic;
-    max-width: 300px;
+    max-width: 350px;
     text-align: center;
 }
 
