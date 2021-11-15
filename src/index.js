@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ArtistExplorer from './ArtistExplorer.jsx';
+import ExplorerContainer from './ExplorerContainer.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ArtistExplorer />
+    <ExplorerContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );

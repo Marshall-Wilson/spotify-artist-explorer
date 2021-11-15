@@ -1,10 +1,8 @@
-import './ArtistExplorer.css';
-import Nav from './components/Nav'
-import About from './components/About'
+import '../ArtistExplorer.css';
 import React, { useEffect, useState } from 'react'
-import { generatePlaylist } from './scripts/spotifySearch'
-import Traverser from './components/Traverser';
-import Input from './components/Input';
+import { generatePlaylist } from '../scripts/spotifySearch'
+import Traverser from './Traverser';
+import Input from './Input';
 
 // Retrieves access token and playlist info from Spotify callback
 const hash = window.location.hash
@@ -17,25 +15,18 @@ const hash = window.location.hash
         }
         return initial;
     }, {});
+console.log(window.location);
 window.location.hash = "";
+
 
 // Main component for the spotify artist explorer 
 function ArtistExplorer() {
     const [token, setToken] = useState(null); //Spotify access token
-    const [pageChoice, setPageChoice] = useState('main'); //display main or about page
     const [startName, setStartName] = useState(''); //starting artist
     const [endName, setEndName] = useState(''); //ending artist
     const [searching, setSearching] = useState(false); //whether search is currently happening
     const [playlistID, setPlaylistID] = useState(null); //stores playlist id once generated
 
-    // Sets the current page choice. 'main' or invalid choices refresh page to base state
-    const newPageChoice = (name) => {
-        if (name === 'about') {
-            setPageChoice('about');
-        } else {
-            window.location.reload();
-        }
-    }
 
     // On load check hash for access token
     useEffect(() => {
@@ -61,8 +52,6 @@ function ArtistExplorer() {
 
     return ( 
         <div className = "artist-explorer" >
-            <Nav clickHandler = { newPageChoice }/> 
-            {pageChoice === 'main' ? // display main or about 
                 <main> 
                     {token ? // if user token is available, display post-playlist info
                         <div className='playlist-added'>
@@ -71,17 +60,13 @@ function ArtistExplorer() {
                                 <p>Open Spotify?</p>
                             </a>
                         </div>: 
-                        searching ? 
+                        searching ? // if input has been submitted, start the traverser, otherwise display input 
                             <Traverser startName={startName} endName={endName}/>:
                             <Input setStartName={setStartName} setEndName={setEndName} beginSearching={beginSearch}/>
                         
                     } 
-                </main> : 
-                <About />
-            } 
-            <footer>
-                <p> Marshall Wilson 2021 | <a href = "http://www.marshallwilson.info" > www.marshallwilson.info </a></p>
-            </footer> 
+                </main>
+            
         </div>
     );
 }
