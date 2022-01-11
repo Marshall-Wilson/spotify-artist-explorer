@@ -1,5 +1,5 @@
 # Spotify Artist Explorer
-by Marshall Wilson 2021
+by Marshall Wilson
 
 ## Purpose
 A one-page react app that allows the user to generate a playlist that starts at one artist and ends at another by going sequentially through related artists. 
