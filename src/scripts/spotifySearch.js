@@ -1,6 +1,6 @@
 import BfsArtist from './BfsArtist'
 import SpotifyWebApi from 'spotify-web-api-js'
-
+import { Buffer } from 'buffer'
 
 //returns an app authorization token 
 export const authorize = () => {

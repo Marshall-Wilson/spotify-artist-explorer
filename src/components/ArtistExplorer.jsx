@@ -14,10 +14,7 @@ const hash = window.location.hash
             initial[parts[0]] = decodeURIComponent(parts[1]);
         }
         return initial;
-    }, {});
-console.log(window.location);
-window.location.hash = "";
-
+    }, {}); 
 
 // Main component for the spotify artist explorer 
 function ArtistExplorer() {
@@ -52,21 +49,20 @@ function ArtistExplorer() {
 
     return ( 
         <div className = "artist-explorer" >
-                <main> 
-                    {token ? // if user token is available, display post-playlist info
-                        <div className='playlist-added'>
-                            <h1> Playlist Added </h1> 
-                            <a className='playlist-button' href={`https://open.spotify.com/playlist/${playlistID}`} target='_blank' rel="noopener noreferrer">
-                                <p>Open Spotify?</p>
-                            </a>
-                        </div>: 
-                        searching ? // if input has been submitted, start the traverser, otherwise display input 
-                            <Traverser startName={startName} endName={endName}/>:
-                            <Input setStartName={setStartName} setEndName={setEndName} beginSearching={beginSearch}/>
-                        
-                    } 
-                </main>
-            
+            <main> 
+                {token ? // if user token is available, display post-playlist info
+                    <div className='playlist-added'>
+                        <h1> Playlist Added </h1> 
+                        <a className='playlist-button' href={`https://open.spotify.com/playlist/${playlistID}`} target='_blank' rel="noopener noreferrer">
+                            <p>Open Spotify?</p>
+                        </a>
+                    </div>: 
+                    searching ? // if input has been submitted, start the traverser, otherwise display input 
+                        <Traverser startName={startName} endName={endName}/>:
+                        <Input setStartName={setStartName} setEndName={setEndName} beginSearching={beginSearch}/>
+                    
+                } 
+            </main>
         </div>
     );
 }

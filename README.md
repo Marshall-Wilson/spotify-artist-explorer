@@ -2,7 +2,9 @@
 by Marshall Wilson
 
 ## Purpose
-A one-page react app that allows the user to generate a playlist that starts at one artist and ends at another by going sequentially through related artists. 
+A front-end app using React.js and the Spotify api. Allows the user to find paths
+between any two artists on spotify using a Breadth-First Search of the starting artists
+"related artists" 
 
 ## Installation
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
@@ -11,7 +13,7 @@ Installation:
 
 `npm install`  
 
-To Start Server:
+To Start Client:
 
 `npm start`  
 

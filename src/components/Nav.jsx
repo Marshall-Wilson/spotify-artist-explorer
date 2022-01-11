@@ -1,13 +1,16 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 //explorer nav bar
-const Nav = ({clickHandler}) => {
+const Nav = () => {
     return (
         <div className="nav">
-            <h1>Spotify Artist Explorer</h1>
+            <Link to="/">
+                <h1>Spotify Artist Explorer</h1>
+            </Link>
             <div className="nav-links">
-                <h2 onClick={() => clickHandler('main')}>Main</h2>
-                <h2 onClick={() => clickHandler('about')}>About</h2>
+                <Link to='/'>Main</Link>
+                <Link to='/about'>About</Link>
             </div>
         </div>
     )
