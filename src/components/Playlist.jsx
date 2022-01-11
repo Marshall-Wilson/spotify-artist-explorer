@@ -8,7 +8,7 @@ const songListReducer = (prev, curr) => {
 //subcomponent for allowing the user to add a list of songs to their spotify account
 //actual playlist adding is handled on callback to ArtistExplorer component
 const Playlist = ({songList}) => {
-    const redirectURI = "http://10.0.0.150:3000"
+    const redirectURI = (process.env.NODE_ENV === "production" ? "http://spotify-explorer-hero.herokuapp.com/" : "http://localhost:3000");
     const authEndpoint = "https://accounts.spotify.com/authorize";
     const clientID = "d4c2fd522b164d169533cc916f7c5d27";
     const scopes = [
